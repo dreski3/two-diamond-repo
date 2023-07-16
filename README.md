@@ -29,6 +29,30 @@ The Fungi Protocol diamond holds all the facets required to create a DeFund and 
 
 ![ProtocolDiamond](media/ProtocolDiamond.jpeg)
 
+## Repository Structure<a name="repository-structure"></a>
+
+```
+contracts
+│ README.md                   // you are here
+│ ...                         // setup and development configuration files
+│
+├─── helpers                   // helper functions
+├─── deploy                   // deployment scripts
+├─── diamondABI               // Diamond ABI definition
+├─── scripts                  // scripts containing sample calls for demonstration
+│
+├─── src                      // the contract code
+│   ├── Facets                // service facets
+│   ├── Interfaces            // interface definitions
+│   └── Libraries             // library definitions
+|   └── upgradeInitializers   // Diamond contract
+|   └── Diamond.sol           // Diamond contract
+│
+└─── test                     // contract unit tests
+    ├─── facets               // facet tests
+    └─── utils                // testing utility functions
+```
+
 ## Dependencies
    - Install [foundry](https://book.getfoundry.sh)
    - Install [string-utils](https://github.com/Arachnid/solidity-stringutils)
@@ -43,6 +67,8 @@ The Fungi Protocol diamond holds all the facets required to create a DeFund and 
     ```bash
        $ forge install
     ```
+
+  Make sure to copy `.env.example` to `.env` and fill out the missing values. Tests might fail with missing environment variables if some of the variables are blank.
 ## Testing
   To run all of the tests use the command
   ```bash
