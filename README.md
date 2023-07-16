@@ -36,11 +36,10 @@ graph TD;
 
 The Fungi Protocol diamond holds all the facets required to create a DeFund and provide the necessary functionality to manage the assets. It is expected that the protocol will continually add more facets to provide more functionality and allow for more complex strategies.
 
-The basic structure of the protocol is illustrated below.
-The bellow flowchart starts with a 
-```
-![Alt text](relative%20path/media/ProtocolFlowChart.jpeg?raw=true "Title")
-```
+Below is an image of the protocol structure extracted from the realtive path "media/ProtocolDiamond.jpeg"
+
+![ProtocolDiamond](media/ProtocolDiamond.jpeg)
+
 
 ## Dependencies
    - Install [foundry](https://book.getfoundry.sh)
