@@ -37,16 +37,9 @@ graph TD;
 The Fungi Protocol diamond holds all the facets required to create a DeFund and provide the necessary functionality to manage the assets. It is expected that the protocol will continually add more facets to provide more functionality and allow for more complex strategies.
 
 The basic structure of the protocol is illustrated below.
-
-```mermaid
-graph TD;
-    D{FungiDiamond}-- DELEGATECALL -->DeFundFactoryFacet --> D{DeFundDiamond};
-    D{FungiDiamond}-- DELEGATECALL -->DeFundFacet;
-    D{FungiDiamond}-- DELEGATECALL -->SwapperFacet;
-    D{FungiDiamond}-- DELEGATECALL -->LenderFacet;
-    D{FungiDiamond}-- DELEGATECALL -->StakerFacet;
-    D{FungiDiamond}-- DELEGATECALL -->LPFacet;
-    D{FungiDiamond}-- DELEGATECALL -->YieldFacet;
+The bellow flowchart starts with a 
+```
+![Alt text](relative%20path/media/ProtocolFlowChart.jpeg?raw=true "Title")
 ```
 
 ## Dependencies
