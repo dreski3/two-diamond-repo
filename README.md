@@ -1,28 +1,74 @@
-# Diamond Proxy Template for Foundry
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-## Description
-This is a reference implementation for EIP-2535 Diamonds by [Nick Mudge](www.github.com/mudgen) translated for use in foundry . To learn about other implementations go here: https://github.com/mudgen/diamond
+# Fungi Protocol
 
-Note: The loupe functions in DiamondLoupeFacet.sol MUST be added to a diamond and are required by the EIP-2535 Diamonds standard.
+## General
+Fungi’s mission is to bring the global asset management industry on-chain. We aim to use blockchain technology to create new solutions that are more transparent, efficient, and accessible than traditional asset management practices, democratizing access to DeFi and breaking down the barriers of complexity. 
+Through the application of smart contracts and the integration with decentralized protocols, Fungi can automate asset management processes cutting out intermediaries and fees, enable greater control and ownership of assets by investors, and eliminate fraud entirely.
+The investment vehicles created by Fungi to push this change forward are called DeFunds: Decentralized Investment Funds.
 
-Note: In this implementation the loupe functions are NOT gas optimized. The facets, facetFunctionSelectors, facetAddresses loupe functions are not meant to be called on-chain and may use too much gas or run out of gas when called in on-chain transactions. In this implementation these functions should be called by off-chain software like websites and Javascript libraries etc., where gas costs do not matter.
+## Architecture<a name="architecture"></a>
+
+The Fungi Protocol is built using the EIP-2535 (Multi-facet Proxy) standard. The contract logic is composed of one central **diamond** contract which is used to store all of the facets, and among these facets there is a factory which is used to create new DeFunds which are themselves diamonds.
+
+All business logic is built using **facet** contracts which live in `src/Facets`.
+
+For more information on EIP-2535 you can view the entire EIP [here](https://eips.ethereum.org/EIPS/eip-2535).
+
+---
+
+### Contract Flow<a name="contract-flow"></a>
+
+One example of use would be a manager creating a DeFund and build a portfolio. The manager would then develop a strategy to get the most out of the deposited assets received either from himself or other investors. The assets could then be used to stake, lend, or provide liquidity to a DEX.
+
+![ProtocolFlowChart](media/ProtocolFlowChart.jpeg)
+
+---
+
+### Protocol Structure<a name="protocol-structure"></a>
+
+The Fungi Protocol diamond holds all the facets required to create a DeFund and provide the necessary functionality to manage the assets. It is expected that the protocol will continually add more facets to provide more functionality and allow for more complex strategies.
+
+![ProtocolDiamond](media/ProtocolDiamond.jpeg)
+
+## Repository Structure<a name="repository-structure"></a>
+
+```
+contracts
+│ README.md                   // you are here
+│ ...                         // setup and development configuration files
+│
+├─── helpers                   // helper functions
+├─── deploy                   // deployment scripts
+├─── diamondABI               // Diamond ABI definition
+├─── scripts                  // scripts containing sample calls for demonstration
+│
+├─── src                      // the contract code
+│   ├── Facets                // service facets
+│   ├── Interfaces            // interface definitions
+│   └── Libraries             // library definitions
+|   └── upgradeInitializers   // Diamond contract
+|   └── Diamond.sol           // Diamond contract
+│
+└─── test                     // contract unit tests
+    ├─── facets               // facet tests
+    └─── utils                // testing utility functions
+```
 
 ## Dependencies
    - Install [foundry](https://book.getfoundry.sh)
    - Install [string-utils](https://github.com/Arachnid/solidity-stringutils)
    - Install [solhint](https://github.com/protofire/solhint)
 
-## Installation Instructions
+## Installation <a name="installation"></a>
   - clone the repo 
     ```bash
-       $ git clone https://www.github.com/ArcStreetCapital/Diamond-Foundry.git
+       $ git clone https://github.com/FungiProject/FungiProtocol.git
     ```
   - install all of the dependencies via 
     ```bash
        $ forge install
     ```
+
+  Make sure to copy `.env.example` to `.env` and fill out the missing values. Tests might fail with missing environment variables if some of the variables are blank.
 ## Testing
   To run all of the tests use the command
   ```bash
@@ -35,33 +81,15 @@ To deploy diamond with standard facets, create .env, start anvil and use command
   ```
 Or deploy to testnet, for example
   ```bash
-     $ forge script script/deployDiamond.s.sol:DeployScript --rpc-url $GOERLI_RPC_URL --broadcast --verify -vvvv --ffi
+     $ forge script script/deployDiamond.s.sol:DeployScript --rpc-url $SEPOLIA_RPC_URL --broadcast --verify -vvvv --ffi
 
   ```
 ## Contributing
   Feel free to create issues and contribute by cloning the repo and adding your changes
   to your own branch. 
 
-## Authors
-- 👤 Nick Mudge: <nick@perfectabstractions.com>, Github: [mudgen](https://www.github.com/mudgen)
-- 👤 Timo Neumann: <timo@fyde.fi>, Github: [Teamo0](https://www.github.com/Teamo0)
-- 👤 Rohan Sundar: <rohan@fyde.fi>, Github: [rsundar](https://www.github.com/rsundar)
+## More Information<a name="more-information"></a>
 
-## Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jdbertron"><img src="https://avatars.githubusercontent.com/u/1455998?v=4?s=100" width="100px;" alt="J.D. Bertron"/><br /><sub><b>J.D. Bertron</b></sub></a><br /><a href="https://github.com/FydeTreasury/Diamond-Foundry/commits?author=jdbertron" title="Code">💻</a></td>
-    </tr>
-  </tbody>
-</table>
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+- [Website](https://www.fungiprotocol.xyz/)
+- [General Documentation](https://docs.fungiprotocol.xyz/)
 
