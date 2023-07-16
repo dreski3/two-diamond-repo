@@ -19,16 +19,7 @@ For more information on EIP-2535 you can view the entire EIP [here](https://eips
 
 One example of use would be a manager creating a DeFund and build a portfolio. The manager would then develop a strategy to get the most out of the deposited assets received either from himself or other investors. The assets could then be used to stake, lend, or provide liquidity to a DEX.
 
-The basic flow is illustrated below.
-
-```mermaid
-graph TD;
-    D{DeFundDiamond}-- DELEGATECALL -->SwapperFacet;
-    D{DeFundDiamond}-- DELEGATECALL -->LenderFacet;
-    D{DeFundDiamond}-- DELEGATECALL -->StakerFacet;
-    D{DeFundDiamond}-- DELEGATECALL -->LPFacet;
-    D{DeFundDiamond}-- DELEGATECALL -->YieldFacet;
-```
+![ProtocolFlowChart](media/ProtocolFlowChart.jpeg)
 
 ---
 
@@ -36,10 +27,7 @@ graph TD;
 
 The Fungi Protocol diamond holds all the facets required to create a DeFund and provide the necessary functionality to manage the assets. It is expected that the protocol will continually add more facets to provide more functionality and allow for more complex strategies.
 
-Below is an image of the protocol structure extracted from the realtive path "media/ProtocolDiamond.jpeg"
-
 ![ProtocolDiamond](media/ProtocolDiamond.jpeg)
-
 
 ## Dependencies
    - Install [foundry](https://book.getfoundry.sh)
